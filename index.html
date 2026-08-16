@@ -3,40 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Divyesh Khod</title>
+<title>LUXE</title>
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
-    color: #fff;
+    font-family: 'Georgia', serif;
+    background: #0d0d0d;
+    color: #f5f5f5;
+  }
+  header {
     text-align: center;
-    padding: 50px 20px;
+    padding: 80px 20px 40px;
+    border-bottom: 1px solid #d4af37;
   }
-  h1 {
-    font-size: 2.5em;
+  header h1 {
+    font-size: 3em;
+    letter-spacing: 8px;
+    color: #d4af37;
+  }
+  header p {
+    color: #aaa;
+    letter-spacing: 2px;
+    margin-top: 10px;
+  }
+  section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .collection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .item {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    width: 260px;
+    padding: 30px 20px;
+  }
+  .item h3 {
+    color: #d4af37;
     margin-bottom: 10px;
+    letter-spacing: 1px;
   }
-  p {
-    color: #ccc;
-    font-size: 1.1em;
+  .item p {
+    color: #999;
+    font-size: 0.9em;
   }
-  .social a {
-    color: #4da6ff;
-    margin: 0 10px;
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid #333;
+    color: #888;
+  }
+  footer a {
+    color: #d4af37;
     text-decoration: none;
+    margin: 0 10px;
   }
 </style>
 </head>
 <body>
-  <h1>Divyesh Khod</h1>
-  <p>Welcome to my website. This is just getting started!</p>
-  
-    
-    
-<div class="social">
+
+<header>
+  <h1>LUXE</h1>
+  <p>ELEVATED ESSENTIALS</p>
+</header>
+
+<section>
+  <h2 style="color:#d4af37; letter-spacing:2px; margin-bottom:30px;">THE COLLECTION</h2>
+  <div class="collection">
+    <div class="item">
+      <h3>The Signature Coat</h3>
+      <p>Tailored elegance for every season.</p>
+    </div>
+    <div class="item">
+      <h3>Gold Line Tee</h3>
+      <p>Minimal design, premium fabric.</p>
+    </div>
+    <div class="item">
+      <h3>Heritage Trousers</h3>
+      <p>Timeless cut, modern comfort.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Contact us</p>
   <a href="https://instagram.com/divyesh_khod_" target="_blank">Instagram</a>
   <a href="mailto:divyeshkhod@gmail.com">Email</a>
-  </div>
+</footer>
+
 </body>
 </html>

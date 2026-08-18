@@ -3,90 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Veyro</title>
+<title>VEYRO — Elevated Essentials</title>
+<!-- Google Fonts for premium typography -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  /* === RESET & BASE === */
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Georgia', serif;
+    font-family: 'Inter', sans-serif;
     background: #0d0d0d;
     color: #f5f5f5;
+    line-height: 1.6;
   }
+  img { max-width: 100%; display: block; }
+
+  /* === HEADER === */
   header {
     text-align: center;
-    padding: 80px 20px 40px;
-    border-bottom: 1px solid #d4af37;
+    padding: 100px 20px 60px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    background: linear-gradient(180deg, #0d0d0d 60%, #1a1a1a);
   }
   header h1 {
-    font-size: 3em;
-    letter-spacing: 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 4em;
+    letter-spacing: 12px;
     color: #d4af37;
+    text-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
   }
   header p {
     color: #aaa;
-    letter-spacing: 2px;
-    margin-top: 10px;
+    letter-spacing: 4px;
+    margin-top: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 0.9em;
   }
+
+  /* === SECTION === */
   section {
-    padding: 60px 20px;
-    text-align: center;
+    padding: 70px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
   }
   h2.section-title {
+    font-family: 'Playfair Display', serif;
     color: #d4af37;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    font-size: 1.6em;
+    letter-spacing: 3px;
+    margin-bottom: 50px;
+    font-size: 2em;
+    text-align: center;
+    position: relative;
   }
+  h2.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: #d4af37;
+    margin: 15px auto 0;
+    opacity: 0.5;
+  }
+
+  /* === COLLECTION GRID === */
   .collection {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
   }
+
+  /* === PRODUCT CARD === */
   .item {
     background: #1a1a1a;
-    border: 1px solid #333;
-    width: 260px;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
   .item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    border-color: #d4af37;
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.15);
   }
   .item img {
     width: 100%;
-    height: 320px;
+    height: 340px;
     object-fit: cover;
-    display: block;
+    transition: transform 0.5s ease;
+  }
+  .item:hover img {
+    transform: scale(1.03);
   }
   .item-info {
-    padding: 20px;
+    padding: 22px 20px 25px;
+    text-align: center;
   }
   .item h3 {
+    font-family: 'Playfair Display', serif;
     color: #d4af37;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     letter-spacing: 1px;
-    font-size: 1.1em;
+    font-size: 1.15em;
   }
   .item p {
     color: #999;
-    font-size: 0.9em;
+    font-size: 0.85em;
     margin-bottom: 12px;
+    font-weight: 300;
   }
   .price {
     color: #f5f5f5;
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 1.3em;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
+  .price::before {
+    content: '₹';
+    font-weight: 400;
+    margin-right: 2px;
+  }
+
+  /* === ADD-TO-CART BUTTON (NEW) === */
+  .btn-buy {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 24px;
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 4px;
+  }
+  .btn-buy:hover {
+    background: #d4af37;
+    color: #0d0d0d;
+  }
+
+  /* === FOOTER === */
   footer {
     text-align: center;
-    padding: 40px 20px;
-    border-top: 1px solid #333;
+    padding: 50px 20px;
+    border-top: 1px solid #1a1a1a;
     color: #888;
+    background: #0a0a0a;
   }
+  footer p { margin-bottom: 15px; font-weight: 300; }
   footer a {
     color: #d4af37;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 15px;
+    transition: color 0.3s;
+    font-size: 0.95em;
+  }
+  footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    header h1 { font-size: 2.8em; letter-spacing: 6px; }
+    header { padding: 60px 15px 40px; }
+    .collection { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .item img { height: 220px; }
+    .item-info { padding: 14px 12px 18px; }
+    .item h3 { font-size: 1em; }
+    .price { font-size: 1.1em; }
+    h2.section-title { font-size: 1.5em; }
+  }
+  @media (max-width: 400px) {
+    .collection { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -101,93 +193,113 @@
   <h2 class="section-title">THE COLLECTION</h2>
   <div class="collection">
 
+    <!-- Product 1 -->
     <div class="item">
-      <img src="IMG-20260818-WA0007.jpg" alt="Veyro Tee 1">
+      <img src="IMG-20260818-WA0007.jpg" alt="Signature Tee">
       <div class="item-info">
         <h3>Signature Tee</h3>
         <p>Premium print, soft cotton finish.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 2 -->
     <div class="item">
-      <img src="IMG-20260818-WA0008.jpg" alt="Veyro Tee 2">
+      <img src="IMG-20260818-WA0008.jpg" alt="Classic Print Tee">
       <div class="item-info">
         <h3>Classic Print Tee</h3>
         <p>Premium print, breathable fabric.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 3 -->
     <div class="item">
-      <img src="IMG-20260818-WA0009.jpg" alt="Veyro Tee 3">
+      <img src="IMG-20260818-WA0009.jpg" alt="Heritage Tee">
       <div class="item-info">
         <h3>Heritage Tee</h3>
         <p>Premium print, everyday comfort fit.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 4 -->
     <div class="item">
-      <img src="IMG-20260818-WA0010.jpg" alt="Veyro Tee 4">
+      <img src="IMG-20260818-WA0010.jpg" alt="Urban Edition Tee">
       <div class="item-info">
         <h3>Urban Edition Tee</h3>
         <p>Premium print, relaxed streetwear cut.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 5 -->
     <div class="item">
-      <img src="IMG_20260818_072136.png" alt="Veyro Tee 5">
+      <img src="IMG_20260818_072136.png" alt="Essential Tee">
       <div class="item-info">
         <h3>Essential Tee</h3>
         <p>Premium print, everyday staple.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 6 -->
     <div class="item">
-      <img src="IMG_20260818_072150.png" alt="Veyro Tee 6">
+      <img src="IMG_20260818_072150.png" alt="Noir Print Tee">
       <div class="item-info">
         <h3>Noir Print Tee</h3>
         <p>Premium print, bold statement piece.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 7 -->
     <div class="item">
-      <img src="IMG_20260818_072203.png" alt="Veyro Tee 7">
+      <img src="IMG_20260818_072203.png" alt="Studio Tee">
       <div class="item-info">
         <h3>Studio Tee</h3>
         <p>Premium print, minimal modern look.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 8 -->
     <div class="item">
-      <img src="IMG_20260818_072227.png" alt="Veyro Tee 8">
+      <img src="IMG_20260818_072227.png" alt="Legacy Tee">
       <div class="item-info">
         <h3>Legacy Tee</h3>
         <p>Premium print, timeless design.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 9 -->
     <div class="item">
-      <img src="_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg" alt="Veyro Tee 9">
+      <img src="_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg" alt="Motion Tee">
       <div class="item-info">
         <h3>Motion Tee</h3>
         <p>Premium print, active-fit comfort.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
+    <!-- Product 10 -->
     <div class="item">
-      <img src="file_000000004c8c8208a2649d04e962b7b5.png" alt="Veyro Tee 10">
+      <img src="file_000000004c8c8208a2649d04e962b7b5.png" alt="Origin Tee">
       <div class="item-info">
         <h3>Origin Tee</h3>
         <p>Premium print, founder's edition.</p>
-        <span class="price">₹399</span>
+        <span class="price">399</span>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
@@ -195,7 +307,7 @@
 </section>
 
 <footer>
-  <p>Contact us</p>
+  <p>📍 VEYRO — Elevated Essentials</p>
   <a href="https://instagram.com/divyesh_khod_" target="_blank">Instagram</a>
   <a href="mailto:divyeshkhod@gmail.com">Email</a>
 </footer>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VEYRO — Elevated Essentials</title>
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   /* === RESET & BASE === */
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -91,25 +91,27 @@
     opacity: 0.5;
   }
 
-  /* === COLLECTION GRID — 2 COLUMNS === */
+  /* === COLLECTION GRID — LIKE AMAZON === */
   .collection {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 20px;
+    /* Desktop: 4 columns, Tablet: 3, Mobile: 2 (exactly like your screenshot) */
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  /* === PRODUCT CARD === */
+  /* === PRODUCT CARD — CLEAN LIKE AMAZON === */
   .item {
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
+    padding-bottom: 15px;
   }
   .item:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
     border-color: #d4af37;
-    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
   }
   .item img {
     width: 100%;
@@ -124,36 +126,38 @@
     transform: scale(1.03);
   }
   .item-info {
-    padding: 22px 20px 25px;
-    text-align: center;
+    padding: 10px 15px 5px;
+    text-align: left;
   }
   .item h3 {
     font-family: 'Playfair Display', serif;
     color: #d4af37;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     letter-spacing: 1px;
-    font-size: 1.15em;
+    font-size: 1em;
   }
   .item p {
     color: #ccc;
-    font-size: 0.85em;
-    margin-bottom: 6px;
+    font-size: 0.8em;
+    margin-bottom: 4px;
     font-weight: 300;
-    line-height: 1.5;
+    line-height: 1.4;
   }
   .item .fabric {
     color: #d4af37;
-    font-size: 0.75em;
+    font-size: 0.7em;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     display: block;
   }
   .price {
     color: #f5f5f5;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: 600;
     letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
   }
   .price::before {
     content: '₹';
@@ -161,21 +165,42 @@
     margin-right: 2px;
   }
 
+  /* === SIZE SELECTION === */
+  .size-select {
+    width: 100%;
+    margin: 6px 0 8px;
+    background: #0d0d0d;
+    color: #f5f5f5;
+    border: 1px solid #d4af37;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8em;
+    cursor: pointer;
+    outline: none;
+  }
+  .size-select option {
+    background: #1a1a1a;
+    color: #f5f5f5;
+  }
+
   /* === ADD-TO-CART BUTTON === */
   .btn-buy {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 8px 24px;
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 8px 0;
     background: transparent;
     border: 1px solid #d4af37;
     color: #d4af37;
     font-family: 'Inter', sans-serif;
-    font-size: 0.8em;
+    font-size: 0.75em;
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 4px;
+    text-align: center;
   }
   .btn-buy:hover {
     background: #d4af37;
@@ -267,6 +292,11 @@
     color: #d4af37;
     font-size: 0.95em;
   }
+  .cart-item-info .size-tag {
+    color: #aaa;
+    font-size: 0.8em;
+    display: block;
+  }
   .cart-item-info .price {
     font-size: 1em;
   }
@@ -323,18 +353,25 @@
     font-size: 1.1em;
   }
 
-  /* === RESPONSIVE === */
-  @media (max-width: 600px) {
+  /* === RESPONSIVE — EXACTLY LIKE AMAZON === */
+  @media (max-width: 1024px) {
+    .collection { grid-template-columns: repeat(3, 1fr); } /* 3 on tablet */
+  }
+  @media (max-width: 768px) {
+    .collection { grid-template-columns: repeat(2, 1fr); } /* 2 on mobile (your screenshot) */
     header h1 { font-size: 2.8em; letter-spacing: 6px; }
     header { padding: 60px 15px 40px; }
     .cart-icon { top: 20px; right: 20px; font-size: 1.2em; }
-    .collection { grid-template-columns: 1fr; }
     .item img { aspect-ratio: 1/1; }
-    .item-info { padding: 14px 12px 18px; }
-    .item h3 { font-size: 1em; }
-    .price { font-size: 1.1em; }
+    .item-info { padding: 10px 12px 5px; }
+    .item h3 { font-size: 0.9em; }
+    .price { font-size: 1em; }
     h2.section-title { font-size: 1.5em; }
     .cart-content { padding: 20px; }
+  }
+  @media (max-width: 480px) {
+    .collection { grid-template-columns: repeat(2, 1fr); gap: 12px; } /* Stay 2 even on small phones */
+    .btn-buy { font-size: 0.65em; padding: 6px 0; }
   }
 </style>
 </head>
@@ -357,10 +394,14 @@
       <img src="IMG-20260818-WA0007.jpg" alt="Signature Tee">
       <div class="item-info">
         <h3>Signature Tee</h3>
-        <p>Premium graphic print with a clean, modern aesthetic.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
+        <p>Premium graphic print</p>
+        <span class="fabric">180 GSM</span>
         <span class="price">399</span>
-        <button class="btn-buy" onclick="addToCart('Signature Tee', 399, 'IMG-20260818-WA0007.jpg')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Signature Tee', 399, 'IMG-20260818-WA0007.jpg')">Add</button>
       </div>
     </div>
 
@@ -368,11 +409,15 @@
     <div class="item">
       <img src="IMG-20260818-WA0008.jpg" alt="Classic Print Tee">
       <div class="item-info">
-        <h3>Classic Print Tee</h3>
-        <p>Timeless design with a bold, breathable finish.</p>
-        <span class="fabric">100% Combed Cotton • 200 GSM</span>
+        <h3>Classic Print</h3>
+        <p>Bold breathable finish</p>
+        <span class="fabric">200 GSM</span>
         <span class="price">499</span>
-        <button class="btn-buy" onclick="addToCart('Classic Print Tee', 499, 'IMG-20260818-WA0008.jpg')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Classic Print Tee', 499, 'IMG-20260818-WA0008.jpg')">Add</button>
       </div>
     </div>
 
@@ -381,10 +426,14 @@
       <img src="IMG-20260818-WA0009.jpg" alt="Heritage Tee">
       <div class="item-info">
         <h3>Heritage Tee</h3>
-        <p>Everyday comfort with a refined, classic look.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
+        <p>Refined classic look</p>
+        <span class="fabric">180 GSM</span>
         <span class="price">399</span>
-        <button class="btn-buy" onclick="addToCart('Heritage Tee', 399, 'IMG-20260818-WA0009.jpg')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Heritage Tee', 399, 'IMG-20260818-WA0009.jpg')">Add</button>
       </div>
     </div>
 
@@ -392,11 +441,15 @@
     <div class="item">
       <img src="IMG-20260818-WA0010.jpg" alt="Urban Edition Tee">
       <div class="item-info">
-        <h3>Urban Edition Tee</h3>
-        <p>Relaxed streetwear cut with a premium edge.</p>
-        <span class="fabric">100% Combed Cotton • 220 GSM</span>
+        <h3>Urban Edition</h3>
+        <p>Streetwear premium edge</p>
+        <span class="fabric">220 GSM</span>
         <span class="price">599</span>
-        <button class="btn-buy" onclick="addToCart('Urban Edition Tee', 599, 'IMG-20260818-WA0010.jpg')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Urban Edition Tee', 599, 'IMG-20260818-WA0010.jpg')">Add</button>
       </div>
     </div>
 
@@ -405,10 +458,14 @@
       <img src="IMG_20260818_072136.png" alt="Essential Tee">
       <div class="item-info">
         <h3>Essential Tee</h3>
-        <p>Your everyday staple — minimal, soft, and durable.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
+        <p>Everyday staple</p>
+        <span class="fabric">180 GSM</span>
         <span class="price">399</span>
-        <button class="btn-buy" onclick="addToCart('Essential Tee', 399, 'IMG_20260818_072136.png')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Essential Tee', 399, 'IMG_20260818_072136.png')">Add</button>
       </div>
     </div>
 
@@ -416,11 +473,15 @@
     <div class="item">
       <img src="IMG_20260818_072150.png" alt="Noir Print Tee">
       <div class="item-info">
-        <h3>Noir Print Tee</h3>
-        <p>Bold monochrome statement piece for standout looks.</p>
-        <span class="fabric">100% Combed Cotton • 240 GSM</span>
+        <h3>Noir Print</h3>
+        <p>Bold monochrome statement</p>
+        <span class="fabric">240 GSM</span>
         <span class="price">699</span>
-        <button class="btn-buy" onclick="addToCart('Noir Print Tee', 699, 'IMG_20260818_072150.png')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Noir Print Tee', 699, 'IMG_20260818_072150.png')">Add</button>
       </div>
     </div>
 
@@ -429,10 +490,14 @@
       <img src="IMG_20260818_072203.png" alt="Studio Tee">
       <div class="item-info">
         <h3>Studio Tee</h3>
-        <p>Minimal modern design with a premium finish.</p>
-        <span class="fabric">100% Combed Cotton • 200 GSM</span>
+        <p>Minimal modern design</p>
+        <span class="fabric">200 GSM</span>
         <span class="price">499</span>
-        <button class="btn-buy" onclick="addToCart('Studio Tee', 499, 'IMG_20260818_072203.png')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Studio Tee', 499, 'IMG_20260818_072203.png')">Add</button>
       </div>
     </div>
 
@@ -441,10 +506,14 @@
       <img src="IMG_20260818_072227.png" alt="Legacy Tee">
       <div class="item-info">
         <h3>Legacy Tee</h3>
-        <p>Timeless design that never goes out of style.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
+        <p>Timeless design</p>
+        <span class="fabric">180 GSM</span>
         <span class="price">399</span>
-        <button class="btn-buy" onclick="addToCart('Legacy Tee', 399, 'IMG_20260818_072227.png')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Legacy Tee', 399, 'IMG_20260818_072227.png')">Add</button>
       </div>
     </div>
 
@@ -453,10 +522,14 @@
       <img src="_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg" alt="Motion Tee">
       <div class="item-info">
         <h3>Motion Tee</h3>
-        <p>Active-fit comfort with a dynamic, sporty vibe.</p>
-        <span class="fabric">100% Combed Cotton • 220 GSM</span>
+        <p>Active-fit sporty vibe</p>
+        <span class="fabric">220 GSM</span>
         <span class="price">599</span>
-        <button class="btn-buy" onclick="addToCart('Motion Tee', 599, '_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Motion Tee', 599, '_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg')">Add</button>
       </div>
     </div>
 
@@ -465,10 +538,14 @@
       <img src="file_000000004c8c8208a2649d04e962b7b5.png" alt="Origin Tee">
       <div class="item-info">
         <h3>Origin Tee</h3>
-        <p>Founder's edition — the tee that started it all.</p>
-        <span class="fabric">100% Combed Cotton • 240 GSM</span>
+        <p>Founder's edition</p>
+        <span class="fabric">240 GSM</span>
         <span class="price">699</span>
-        <button class="btn-buy" onclick="addToCart('Origin Tee', 699, 'file_000000004c8c8208a2649d04e962b7b5.png')">Add to Cart</button>
+        <select class="size-select">
+          <option value="S">S</option><option value="M" selected>M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <button class="btn-buy" onclick="addToCart('Origin Tee', 699, 'file_000000004c8c8208a2649d04e962b7b5.png')">Add</button>
       </div>
     </div>
 
@@ -496,47 +573,45 @@
 
 <!-- === JAVASCRIPT === -->
 <script>
-  // Load cart from localStorage
   let cart = JSON.parse(localStorage.getItem('veyroCart')) || [];
 
-  // Save cart to localStorage
   function saveCart() {
     localStorage.setItem('veyroCart', JSON.stringify(cart));
     updateCartUI();
   }
 
-  // Add item to cart
   function addToCart(name, price, image) {
-    const existing = cart.find(item => item.name === name);
+    const card = event.target.closest('.item');
+    const sizeSelect = card.querySelector('.size-select');
+    const size = sizeSelect ? sizeSelect.value : 'M';
+
+    const existing = cart.find(item => item.name === name && item.size === size);
     if (existing) {
       existing.quantity += 1;
     } else {
-      cart.push({ name, price, image, quantity: 1 });
+      cart.push({ name, price, image, size, quantity: 1 });
     }
     saveCart();
     openCart();
   }
 
-  // Remove item from cart
-  function removeFromCart(name) {
-    cart = cart.filter(item => item.name !== name);
+  function removeFromCart(name, size) {
+    cart = cart.filter(item => !(item.name === name && item.size === size));
     saveCart();
   }
 
-  // Change quantity
-  function changeQuantity(name, delta) {
-    const item = cart.find(i => i.name === name);
+  function changeQuantity(name, size, delta) {
+    const item = cart.find(i => i.name === name && i.size === size);
     if (item) {
       item.quantity += delta;
       if (item.quantity <= 0) {
-        removeFromCart(name);
+        removeFromCart(name, size);
         return;
       }
       saveCart();
     }
   }
 
-  // Update cart UI (count + modal)
   function updateCartUI() {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
     document.getElementById('cartCount').textContent = count;
@@ -550,20 +625,21 @@
 
     let html = '';
     let total = 0;
-    cart.forEach(item => {
+    cart.forEach((item) => {
       total += item.price * item.quantity;
       html += `
         <div class="cart-item">
           <img src="${item.image}" alt="${item.name}">
           <div class="cart-item-info">
             <h4>${item.name}</h4>
+            <span class="size-tag">Size: ${item.size}</span>
             <span class="price">₹${item.price}</span>
           </div>
           <div class="cart-item-actions">
-            <button onclick="changeQuantity('${item.name}', -1)">−</button>
+            <button onclick="changeQuantity('${item.name}', '${item.size}', -1)">−</button>
             <span>${item.quantity}</span>
-            <button onclick="changeQuantity('${item.name}', 1)">+</button>
-            <button onclick="removeFromCart('${item.name}')" style="background:#b33;color:#fff;">✕</button>
+            <button onclick="changeQuantity('${item.name}', '${item.size}', 1)">+</button>
+            <button onclick="removeFromCart('${item.name}', '${item.size}')" style="background:#b33;color:#fff;">✕</button>
           </div>
         </div>
       `;
@@ -572,18 +648,15 @@
     document.getElementById('cartTotal').textContent = `₹${total}`;
   }
 
-  // Open cart modal
   function openCart() {
     updateCartUI();
     document.getElementById('cartModal').classList.add('active');
   }
 
-  // Close cart modal
   function closeCart() {
     document.getElementById('cartModal').classList.remove('active');
   }
 
-  // Checkout
   function checkout() {
     if (cart.length === 0) {
       alert('Your cart is empty!');
@@ -595,14 +668,12 @@
     closeCart();
   }
 
-  // Close modal on outside click
   document.getElementById('cartModal').addEventListener('click', function(e) {
     if (e.target === this) closeCart();
   });
 
-  // Load cart on page load
   updateCartUI();
 </script>
 
 </body>
-</html>
+  </html>

@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VEYRO — Elevated Essentials</title>
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* === RESET & BASE === */
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', sans-serif;
@@ -17,7 +15,6 @@
   }
   img { max-width: 100%; display: block; }
 
-  /* === HEADER === */
   header {
     text-align: center;
     padding: 80px 20px 40px;
@@ -40,8 +37,6 @@
     text-transform: uppercase;
     font-size: 0.9em;
   }
-
-  /* === CART ICON IN HEADER === */
   .cart-icon {
     position: absolute;
     top: 30px;
@@ -54,9 +49,7 @@
     gap: 8px;
     transition: color 0.3s;
   }
-  .cart-icon:hover {
-    color: #fff;
-  }
+  .cart-icon:hover { color: #fff; }
   .cart-count {
     background: #d4af37;
     color: #0d0d0d;
@@ -65,8 +58,6 @@
     font-size: 0.7em;
     font-weight: 700;
   }
-
-  /* === SECTION === */
   section {
     padding: 60px 20px;
     max-width: 1200px;
@@ -90,15 +81,11 @@
     margin: 15px auto 0;
     opacity: 0.5;
   }
-
-  /* === COLLECTION GRID === */
   .collection {
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(4, 1fr);
   }
-
-  /* === PRODUCT CARD === */
   .item {
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
@@ -112,8 +99,6 @@
     border-color: #d4af37;
     box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
   }
-  
-  /* === IMAGE (CLICK TO ZOOM) === */
   .item img {
     width: 100%;
     height: auto;
@@ -124,10 +109,7 @@
     transition: transform 0.5s ease;
     cursor: pointer;
   }
-  .item:hover img {
-    transform: scale(1.03);
-  }
-
+  .item:hover img { transform: scale(1.03); }
   .item-info {
     padding: 10px 15px 5px;
     text-align: left;
@@ -165,8 +147,6 @@
     font-weight: 400;
     margin-right: 2px;
   }
-
-  /* === SIZE SELECTION === */
   .size-select {
     width: 100%;
     margin: 6px 0 8px;
@@ -180,8 +160,6 @@
     cursor: pointer;
     outline: none;
   }
-
-  /* === ADD-TO-CART BUTTON === */
   .btn-buy {
     display: block;
     width: 100%;
@@ -199,12 +177,7 @@
     border-radius: 4px;
     text-align: center;
   }
-  .btn-buy:hover {
-    background: #d4af37;
-    color: #0d0d0d;
-  }
-
-  /* === LIGHTBOX (IMAGE ZOOM) === */
+  .btn-buy:hover { background: #d4af37; color: #0d0d0d; }
   .lightbox {
     display: none;
     position: fixed;
@@ -215,9 +188,7 @@
     align-items: center;
     cursor: zoom-out;
   }
-  .lightbox.active {
-    display: flex;
-  }
+  .lightbox.active { display: flex; }
   .lightbox img {
     max-width: 90%;
     max-height: 90%;
@@ -225,8 +196,6 @@
     border-radius: 8px;
     border: 1px solid #d4af37;
   }
-
-  /* === FOOTER === */
   footer {
     text-align: center;
     padding: 40px 20px;
@@ -242,12 +211,7 @@
     transition: color 0.3s;
     font-size: 0.95em;
   }
-  footer a:hover {
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  /* === CART MODAL === */
+  footer a:hover { color: #fff; text-decoration: underline; }
   .cart-modal {
     display: none;
     position: fixed;
@@ -258,9 +222,7 @@
     justify-content: center;
     align-items: center;
   }
-  .cart-modal.active {
-    display: flex;
-  }
+  .cart-modal.active { display: flex; }
   .cart-content {
     background: #1a1a1a;
     border: 1px solid #d4af37;
@@ -288,9 +250,7 @@
     cursor: pointer;
     transition: color 0.3s;
   }
-  .close-cart:hover {
-    color: #fff;
-  }
+  .close-cart:hover { color: #fff; }
   .cart-item {
     display: flex;
     align-items: center;
@@ -304,26 +264,11 @@
     object-fit: cover;
     border-radius: 8px;
   }
-  .cart-item-info {
-    flex: 1;
-  }
-  .cart-item-info h4 {
-    color: #d4af37;
-    font-size: 0.95em;
-  }
-  .cart-item-info .size-tag {
-    color: #aaa;
-    font-size: 0.8em;
-    display: block;
-  }
-  .cart-item-info .price {
-    font-size: 1em;
-  }
-  .cart-item-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .cart-item-info { flex: 1; }
+  .cart-item-info h4 { color: #d4af37; font-size: 0.95em; }
+  .cart-item-info .size-tag { color: #aaa; font-size: 0.8em; display: block; }
+  .cart-item-info .price { font-size: 1em; }
+  .cart-item-actions { display: flex; align-items: center; gap: 10px; }
   .cart-item-actions button {
     background: #333;
     color: #fff;
@@ -334,10 +279,7 @@
     font-size: 1em;
     transition: background 0.3s;
   }
-  .cart-item-actions button:hover {
-    background: #d4af37;
-    color: #0d0d0d;
-  }
+  .cart-item-actions button:hover { background: #d4af37; color: #0d0d0d; }
   .cart-total {
     text-align: right;
     font-size: 1.4em;
@@ -345,11 +287,7 @@
     padding-top: 15px;
     border-top: 2px solid #333;
   }
-  .cart-total span {
-    color: #d4af37;
-  }
-
-  /* === CHECKOUT OPTIONS (UPI + COD) === */
+  .cart-total span { color: #d4af37; }
   .checkout-options {
     display: flex;
     flex-direction: column;
@@ -369,9 +307,7 @@
     cursor: pointer;
     transition: background 0.3s;
   }
-  .btn-checkout-upi:hover {
-    background: #b8962e;
-  }
+  .btn-checkout-upi:hover { background: #b8962e; }
   .btn-checkout-cod {
     display: block;
     width: 100%;
@@ -385,12 +321,7 @@
     cursor: pointer;
     transition: all 0.3s;
   }
-  .btn-checkout-cod:hover {
-    background: #d4af37;
-    color: #0d0d0d;
-  }
-
-  /* === PAYMENT MODAL (UPI QR) === */
+  .btn-checkout-cod:hover { background: #d4af37; color: #0d0d0d; }
   .payment-modal {
     display: none;
     position: fixed;
@@ -400,9 +331,7 @@
     justify-content: center;
     align-items: center;
   }
-  .payment-modal.active {
-    display: flex;
-  }
+  .payment-modal.active { display: flex; }
   .payment-content {
     background: #1a1a1a;
     border: 1px solid #d4af37;
@@ -452,9 +381,7 @@
     cursor: pointer;
     margin-top: 10px;
   }
-  .btn-paid:hover {
-    background: #b8962e;
-  }
+  .btn-paid:hover { background: #b8962e; }
   .close-payment {
     position: absolute;
     top: 15px;
@@ -464,18 +391,13 @@
     cursor: pointer;
     transition: color 0.3s;
   }
-  .close-payment:hover {
-    color: #fff;
-  }
-
+  .close-payment:hover { color: #fff; }
   .empty-cart {
     text-align: center;
     color: #888;
     padding: 30px 0;
     font-size: 1.1em;
   }
-
-  /* === RESPONSIVE === */
   @media (max-width: 1024px) {
     .collection { grid-template-columns: repeat(3, 1fr); }
   }
@@ -508,12 +430,10 @@
   </div>
 </header>
 
-<!-- LIGHTBOX (for image zoom) -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <img id="lightboxImg" src="" alt="Zoomed View">
 </div>
 
-<!-- UPI PAYMENT MODAL -->
 <div class="payment-modal" id="paymentModal">
   <div class="payment-content">
     <span class="close-payment" onclick="closePayment()">✕</span>
@@ -530,7 +450,6 @@
   <h2 class="section-title">THE COLLECTION</h2>
   <div class="collection">
 
-    <!-- Product 1 -->
     <div class="item">
       <img src="IMG-20260818-WA0007.jpg" alt="Signature Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -542,11 +461,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Signature Tee', 399, 'IMG-20260818-WA0007.jpg')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Signature Tee', 399, 'IMG-20260818-WA0007.jpg')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 2 -->
     <div class="item">
       <img src="IMG-20260818-WA0008.jpg" alt="Classic Print Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -558,11 +476,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Classic Print Tee', 499, 'IMG-20260818-WA0008.jpg')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Classic Print Tee', 499, 'IMG-20260818-WA0008.jpg')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 3 -->
     <div class="item">
       <img src="IMG-20260818-WA0009.jpg" alt="Heritage Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -574,11 +491,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Heritage Tee', 399, 'IMG-20260818-WA0009.jpg')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Heritage Tee', 399, 'IMG-20260818-WA0009.jpg')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 4 -->
     <div class="item">
       <img src="IMG-20260818-WA0010.jpg" alt="Urban Edition Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -590,11 +506,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Urban Edition Tee', 599, 'IMG-20260818-WA0010.jpg')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Urban Edition Tee', 599, 'IMG-20260818-WA0010.jpg')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 5 -->
     <div class="item">
       <img src="IMG_20260818_072136.png" alt="Essential Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -606,11 +521,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Essential Tee', 399, 'IMG_20260818_072136.png')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Essential Tee', 399, 'IMG_20260818_072136.png')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 6 -->
     <div class="item">
       <img src="IMG_20260818_072150.png" alt="Noir Print Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -622,11 +536,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Noir Print Tee', 699, 'IMG_20260818_072150.png')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Noir Print Tee', 699, 'IMG_20260818_072150.png')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 7 -->
     <div class="item">
       <img src="IMG_20260818_072203.png" alt="Studio Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -638,11 +551,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Studio Tee', 499, 'IMG_20260818_072203.png')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Studio Tee', 499, 'IMG_20260818_072203.png')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 8 -->
     <div class="item">
       <img src="IMG_20260818_072227.png" alt="Legacy Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -654,11 +566,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Legacy Tee', 399, 'IMG_20260818_072227.png')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Legacy Tee', 399, 'IMG_20260818_072227.png')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 9 -->
     <div class="item">
       <img src="_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg" alt="Motion Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -670,11 +581,10 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Motion Tee', 599, '_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Motion Tee', 599, '_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg')">ADD</button>
       </div>
     </div>
 
-    <!-- Product 10 -->
     <div class="item">
       <img src="file_000000004c8c8208a2649d04e962b7b5.png" alt="Origin Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
@@ -686,7 +596,7 @@
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Origin Tee', 699, 'file_000000004c8c8208a2649d04e962b7b5.png')">ADD</button>
+        <button class="btn-buy" onclick="addToCart(this, 'Origin Tee', 699, 'file_000000004c8c8208a2649d04e962b7b5.png')">ADD</button>
       </div>
     </div>
 
@@ -699,7 +609,6 @@
   <a href="mailto:divyeshkhod@gmail.com">Email</a>
 </footer>
 
-<!-- === CART MODAL === -->
 <div class="cart-modal" id="cartModal">
   <div class="cart-content">
     <span class="close-cart" onclick="closeCart()">✕</span>
@@ -708,8 +617,6 @@
     <div class="cart-total">
       Total: <span id="cartTotal">₹0</span>
     </div>
-    
-    <!-- TWO PAYMENT OPTIONS -->
     <div class="checkout-options">
       <button class="btn-checkout-upi" onclick="openPayment()">💳 Pay via UPI (QR)</button>
       <button class="btn-checkout-cod" onclick="confirmCOD()">💰 Cash on Delivery (COD)</button>
@@ -717,9 +624,7 @@
   </div>
 </div>
 
-<!-- === JAVASCRIPT === -->
 <script>
-  // --- CART LOGIC ---
   let cart = JSON.parse(localStorage.getItem('veyroCart')) || [];
 
   function saveCart() {
@@ -727,8 +632,8 @@
     updateCartUI();
   }
 
-  function addToCart(name, price, image) {
-    const card = event.target.closest('.item');
+  function addToCart(btn, name, price, image) {
+    const card = btn.closest('.item');
     const sizeSelect = card.querySelector('.size-select');
     const size = sizeSelect ? sizeSelect.value : 'M';
 
@@ -739,7 +644,7 @@
       cart.push({ name, price, image, size, quantity: 1 });
     }
     saveCart();
-    openCart(); // This line opens the cart immediately!
+    openCart();
   }
 
   function removeFromCart(name, size) {
@@ -748,4 +653,37 @@
   }
 
   function changeQuantity(name, size, delta) {
-    const item = cart.find(i => i.name === name 
+    const item = cart.find(i => i.name === name && i.size === size);
+    if (item) {
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        removeFromCart(name, size);
+      } else {
+        saveCart();
+      }
+    }
+  }
+
+  function updateCartUI() {
+    const cartItemsDiv = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+    } else {
+      cartItemsDiv.innerHTML = cart.map(item => {
+        totalItems += item.quantity;
+        totalPrice += item.price * item.quantity;
+        return `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <span class="size-tag">Size: ${item.size}</span>
+              <span class="price">${item.price}</span>
+            </div>
+            <div class="car

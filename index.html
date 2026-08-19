@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VEYRO — Elevated Essentials</title>
-<!-- Google Fonts for premium typography -->
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   /* === RESET & BASE === */
@@ -20,9 +20,10 @@
   /* === HEADER === */
   header {
     text-align: center;
-    padding: 100px 20px 60px;
+    padding: 80px 20px 40px;
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     background: linear-gradient(180deg, #0d0d0d 60%, #1a1a1a);
+    position: relative;
   }
   header h1 {
     font-family: 'Playfair Display', serif;
@@ -40,9 +41,34 @@
     font-size: 0.9em;
   }
 
+  /* === CART ICON IN HEADER === */
+  .cart-icon {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #d4af37;
+    font-size: 1.4em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+  }
+  .cart-icon:hover {
+    color: #fff;
+  }
+  .cart-count {
+    background: #d4af37;
+    color: #0d0d0d;
+    border-radius: 50%;
+    padding: 2px 10px;
+    font-size: 0.7em;
+    font-weight: 700;
+  }
+
   /* === SECTION === */
   section {
-    padding: 70px 20px;
+    padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -50,7 +76,7 @@
     font-family: 'Playfair Display', serif;
     color: #d4af37;
     letter-spacing: 3px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     font-size: 2em;
     text-align: center;
     position: relative;
@@ -68,7 +94,7 @@
   /* === COLLECTION GRID — 2 COLUMNS === */
   .collection {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 products side by side */
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
 
@@ -79,15 +105,12 @@
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
-    cursor: pointer;
   }
   .item:hover {
     transform: translateY(-8px);
     border-color: #d4af37;
     box-shadow: 0 12px 40px rgba(212, 175, 55, 0.15);
   }
-  
-  /* === IMAGE — NO CROPPING === */
   .item img {
     width: 100%;
     height: auto;
@@ -100,7 +123,6 @@
   .item:hover img {
     transform: scale(1.03);
   }
-
   .item-info {
     padding: 22px 20px 25px;
     text-align: center;
@@ -163,7 +185,7 @@
   /* === FOOTER === */
   footer {
     text-align: center;
-    padding: 50px 20px;
+    padding: 40px 20px;
     border-top: 1px solid #1a1a1a;
     color: #888;
     background: #0a0a0a;
@@ -181,16 +203,138 @@
     text-decoration: underline;
   }
 
-  /* === RESPONSIVE — 1 COLUMN ON MOBILE === */
+  /* === CART MODAL (POPUP) === */
+  .cart-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+  }
+  .cart-modal.active {
+    display: flex;
+  }
+  .cart-content {
+    background: #1a1a1a;
+    border: 1px solid #d4af37;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .cart-content h2 {
+    font-family: 'Playfair Display', serif;
+    color: #d4af37;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+  .close-cart {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #d4af37;
+    font-size: 1.8em;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .close-cart:hover {
+    color: #fff;
+  }
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
+  }
+  .cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .cart-item-info {
+    flex: 1;
+  }
+  .cart-item-info h4 {
+    color: #d4af37;
+    font-size: 0.95em;
+  }
+  .cart-item-info .price {
+    font-size: 1em;
+  }
+  .cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cart-item-actions button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+  }
+  .cart-item-actions button:hover {
+    background: #d4af37;
+    color: #0d0d0d;
+  }
+  .cart-total {
+    text-align: right;
+    font-size: 1.4em;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #333;
+  }
+  .cart-total span {
+    color: #d4af37;
+  }
+  .btn-checkout {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #d4af37;
+    color: #0d0d0d;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+  }
+  .btn-checkout:hover {
+    background: #b8962e;
+  }
+  .empty-cart {
+    text-align: center;
+    color: #888;
+    padding: 30px 0;
+    font-size: 1.1em;
+  }
+
+  /* === RESPONSIVE === */
   @media (max-width: 600px) {
     header h1 { font-size: 2.8em; letter-spacing: 6px; }
     header { padding: 60px 15px 40px; }
-    .collection { grid-template-columns: 1fr; } /* 1 product per row on mobile */
-    .item img { aspect-ratio: 1/1; } /* square on mobile */
+    .cart-icon { top: 20px; right: 20px; font-size: 1.2em; }
+    .collection { grid-template-columns: 1fr; }
+    .item img { aspect-ratio: 1/1; }
     .item-info { padding: 14px 12px 18px; }
     .item h3 { font-size: 1em; }
     .price { font-size: 1.1em; }
     h2.section-title { font-size: 1.5em; }
+    .cart-content { padding: 20px; }
   }
 </style>
 </head>
@@ -199,6 +343,9 @@
 <header>
   <h1>VEYRO</h1>
   <p>ELEVATED ESSENTIALS</p>
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span class="cart-count" id="cartCount">0</span>
+  </div>
 </header>
 
 <section>
@@ -213,7 +360,7 @@
         <p>Premium graphic print with a clean, modern aesthetic.</p>
         <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <button class="btn-buy" onclick="addToCart('Signature Tee', 399, 'IMG-20260818-WA0007.jpg')">Add to Cart</button>
       </div>
     </div>
 
@@ -223,9 +370,9 @@
       <div class="item-info">
         <h3>Classic Print Tee</h3>
         <p>Timeless design with a bold, breathable finish.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
-        <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <span class="fabric">100% Combed Cotton • 200 GSM</span>
+        <span class="price">499</span>
+        <button class="btn-buy" onclick="addToCart('Classic Print Tee', 499, 'IMG-20260818-WA0008.jpg')">Add to Cart</button>
       </div>
     </div>
 
@@ -237,7 +384,7 @@
         <p>Everyday comfort with a refined, classic look.</p>
         <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <button class="btn-buy" onclick="addToCart('Heritage Tee', 399, 'IMG-20260818-WA0009.jpg')">Add to Cart</button>
       </div>
     </div>
 
@@ -247,9 +394,9 @@
       <div class="item-info">
         <h3>Urban Edition Tee</h3>
         <p>Relaxed streetwear cut with a premium edge.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
-        <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <span class="fabric">100% Combed Cotton • 220 GSM</span>
+        <span class="price">599</span>
+        <button class="btn-buy" onclick="addToCart('Urban Edition Tee', 599, 'IMG-20260818-WA0010.jpg')">Add to Cart</button>
       </div>
     </div>
 
@@ -261,7 +408,7 @@
         <p>Your everyday staple — minimal, soft, and durable.</p>
         <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <button class="btn-buy" onclick="addToCart('Essential Tee', 399, 'IMG_20260818_072136.png')">Add to Cart</button>
       </div>
     </div>
 
@@ -271,9 +418,9 @@
       <div class="item-info">
         <h3>Noir Print Tee</h3>
         <p>Bold monochrome statement piece for standout looks.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
-        <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <span class="fabric">100% Combed Cotton • 240 GSM</span>
+        <span class="price">699</span>
+        <button class="btn-buy" onclick="addToCart('Noir Print Tee', 699, 'IMG_20260818_072150.png')">Add to Cart</button>
       </div>
     </div>
 
@@ -283,9 +430,9 @@
       <div class="item-info">
         <h3>Studio Tee</h3>
         <p>Minimal modern design with a premium finish.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
-        <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <span class="fabric">100% Combed Cotton • 200 GSM</span>
+        <span class="price">499</span>
+        <button class="btn-buy" onclick="addToCart('Studio Tee', 499, 'IMG_20260818_072203.png')">Add to Cart</button>
       </div>
     </div>
 
@@ -297,7 +444,7 @@
         <p>Timeless design that never goes out of style.</p>
         <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <button class="btn-buy" onclick="addToCart('Legacy Tee', 399, 'IMG_20260818_072227.png')">Add to Cart</button>
       </div>
     </div>
 
@@ -307,9 +454,9 @@
       <div class="item-info">
         <h3>Motion Tee</h3>
         <p>Active-fit comfort with a dynamic, sporty vibe.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
-        <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <span class="fabric">100% Combed Cotton • 220 GSM</span>
+        <span class="price">599</span>
+        <button class="btn-buy" onclick="addToCart('Motion Tee', 599, '_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg')">Add to Cart</button>
       </div>
     </div>
 
@@ -319,9 +466,9 @@
       <div class="item-info">
         <h3>Origin Tee</h3>
         <p>Founder's edition — the tee that started it all.</p>
-        <span class="fabric">100% Combed Cotton • 180 GSM</span>
-        <span class="price">399</span>
-        <button class="btn-buy">Add to Cart</button>
+        <span class="fabric">100% Combed Cotton • 240 GSM</span>
+        <span class="price">699</span>
+        <button class="btn-buy" onclick="addToCart('Origin Tee', 699, 'file_000000004c8c8208a2649d04e962b7b5.png')">Add to Cart</button>
       </div>
     </div>
 
@@ -333,6 +480,129 @@
   <a href="https://instagram.com/divyesh_khod_" target="_blank">Instagram</a>
   <a href="mailto:divyeshkhod@gmail.com">Email</a>
 </footer>
+
+<!-- === CART MODAL === -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-content">
+    <span class="close-cart" onclick="closeCart()">✕</span>
+    <h2>YOUR CART</h2>
+    <div id="cartItems"></div>
+    <div class="cart-total">
+      Total: <span id="cartTotal">₹0</span>
+    </div>
+    <button class="btn-checkout" onclick="checkout()">Checkout</button>
+  </div>
+</div>
+
+<!-- === JAVASCRIPT === -->
+<script>
+  // Load cart from localStorage
+  let cart = JSON.parse(localStorage.getItem('veyroCart')) || [];
+
+  // Save cart to localStorage
+  function saveCart() {
+    localStorage.setItem('veyroCart', JSON.stringify(cart));
+    updateCartUI();
+  }
+
+  // Add item to cart
+  function addToCart(name, price, image) {
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ name, price, image, quantity: 1 });
+    }
+    saveCart();
+    openCart();
+  }
+
+  // Remove item from cart
+  function removeFromCart(name) {
+    cart = cart.filter(item => item.name !== name);
+    saveCart();
+  }
+
+  // Change quantity
+  function changeQuantity(name, delta) {
+    const item = cart.find(i => i.name === name);
+    if (item) {
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        removeFromCart(name);
+        return;
+      }
+      saveCart();
+    }
+  }
+
+  // Update cart UI (count + modal)
+  function updateCartUI() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartCount').textContent = count;
+
+    const cartItemsDiv = document.getElementById('cartItems');
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = `<div class="empty-cart">Your cart is empty.</div>`;
+      document.getElementById('cartTotal').textContent = '₹0';
+      return;
+    }
+
+    let html = '';
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+      html += `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-item-info">
+            <h4>${item.name}</h4>
+            <span class="price">₹${item.price}</span>
+          </div>
+          <div class="cart-item-actions">
+            <button onclick="changeQuantity('${item.name}', -1)">−</button>
+            <span>${item.quantity}</span>
+            <button onclick="changeQuantity('${item.name}', 1)">+</button>
+            <button onclick="removeFromCart('${item.name}')" style="background:#b33;color:#fff;">✕</button>
+          </div>
+        </div>
+      `;
+    });
+    cartItemsDiv.innerHTML = html;
+    document.getElementById('cartTotal').textContent = `₹${total}`;
+  }
+
+  // Open cart modal
+  function openCart() {
+    updateCartUI();
+    document.getElementById('cartModal').classList.add('active');
+  }
+
+  // Close cart modal
+  function closeCart() {
+    document.getElementById('cartModal').classList.remove('active');
+  }
+
+  // Checkout
+  function checkout() {
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+    alert('Thank you for your order! 🎉 We will contact you shortly.');
+    cart = [];
+    saveCart();
+    closeCart();
+  }
+
+  // Close modal on outside click
+  document.getElementById('cartModal').addEventListener('click', function(e) {
+    if (e.target === this) closeCart();
+  });
+
+  // Load cart on page load
+  updateCartUI();
+</script>
 
 </body>
 </html>

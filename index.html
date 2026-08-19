@@ -739,7 +739,7 @@
       cart.push({ name, price, image, size, quantity: 1 });
     }
     saveCart();
-    openCart();
+    openCart(); // This line opens the cart immediately!
   }
 
   function removeFromCart(name, size) {
@@ -748,6 +748,4 @@
   }
 
   function changeQuantity(name, size, delta) {
-    const item = cart.find(i => i.name === name && i.size === size);
-    if (item) {
-    
+    const item = cart.find(i => i.name === name 

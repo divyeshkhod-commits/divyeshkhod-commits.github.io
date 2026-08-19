@@ -91,15 +91,14 @@
     opacity: 0.5;
   }
 
-  /* === COLLECTION GRID — LIKE AMAZON === */
+  /* === COLLECTION GRID === */
   .collection {
     display: grid;
     gap: 20px;
-    /* Desktop: 4 columns, Tablet: 3, Mobile: 2 (exactly like your screenshot) */
     grid-template-columns: repeat(4, 1fr);
   }
 
-  /* === PRODUCT CARD — CLEAN LIKE AMAZON === */
+  /* === PRODUCT CARD === */
   .item {
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
@@ -113,6 +112,8 @@
     border-color: #d4af37;
     box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
   }
+  
+  /* === IMAGE (CLICK TO ZOOM) === */
   .item img {
     width: 100%;
     height: auto;
@@ -121,10 +122,12 @@
     background: #0d0d0d;
     padding: 10px;
     transition: transform 0.5s ease;
+    cursor: pointer;
   }
   .item:hover img {
     transform: scale(1.03);
   }
+
   .item-info {
     padding: 10px 15px 5px;
     text-align: left;
@@ -141,7 +144,6 @@
     font-size: 0.8em;
     margin-bottom: 4px;
     font-weight: 300;
-    line-height: 1.4;
   }
   .item .fabric {
     color: #d4af37;
@@ -155,7 +157,6 @@
     color: #f5f5f5;
     font-size: 1.2em;
     font-weight: 600;
-    letter-spacing: 1px;
     display: block;
     margin-bottom: 6px;
   }
@@ -178,10 +179,6 @@
     font-size: 0.8em;
     cursor: pointer;
     outline: none;
-  }
-  .size-select option {
-    background: #1a1a1a;
-    color: #f5f5f5;
   }
 
   /* === ADD-TO-CART BUTTON === */
@@ -207,6 +204,48 @@
     color: #0d0d0d;
   }
 
+  /* === RATINGS & REVIEWS === */
+  .stars {
+    color: #d4af37;
+    font-size: 0.9em;
+    letter-spacing: 2px;
+    margin: 4px 0;
+  }
+  .review-count {
+    color: #888;
+    font-size: 0.7em;
+    margin-left: 5px;
+  }
+  .review-text {
+    color: #aaa;
+    font-size: 0.7em;
+    font-style: italic;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* === LIGHTBOX (IMAGE ZOOM) === */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+  }
+  .lightbox.active {
+    display: flex;
+  }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #d4af37;
+  }
+
   /* === FOOTER === */
   footer {
     text-align: center;
@@ -228,7 +267,7 @@
     text-decoration: underline;
   }
 
-  /* === CART MODAL (POPUP) === */
+  /* === CART MODAL === */
   .cart-modal {
     display: none;
     position: fixed;
@@ -329,7 +368,15 @@
   .cart-total span {
     color: #d4af37;
   }
-  .btn-checkout {
+
+  /* === CHECKOUT OPTIONS (UPI + COD) === */
+  .checkout-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .btn-checkout-upi {
     display: block;
     width: 100%;
     padding: 14px;
@@ -340,12 +387,107 @@
     font-size: 1.1em;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 20px;
     transition: background 0.3s;
   }
-  .btn-checkout:hover {
+  .btn-checkout-upi:hover {
     background: #b8962e;
   }
+  .btn-checkout-cod {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 2px solid #d4af37;
+    color: #d4af37;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-checkout-cod:hover {
+    background: #d4af37;
+    color: #0d0d0d;
+  }
+
+  /* === PAYMENT MODAL (UPI QR) === */
+  .payment-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 1001;
+    justify-content: center;
+    align-items: center;
+  }
+  .payment-modal.active {
+    display: flex;
+  }
+  .payment-content {
+    background: #1a1a1a;
+    border: 1px solid #d4af37;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+  }
+  .payment-content h3 {
+    color: #d4af37;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+  }
+  .payment-content p {
+    color: #aaa;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+  }
+  .payment-content img {
+    width: 200px;
+    height: 200px;
+    margin: 10px auto;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #fff;
+    padding: 10px;
+  }
+  .payment-content .upi-id {
+    color: #d4af37;
+    font-weight: 500;
+    font-size: 1em;
+    margin: 10px 0 20px;
+    display: block;
+  }
+  .btn-paid {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #d4af37;
+    color: #0d0d0d;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .btn-paid:hover {
+    background: #b8962e;
+  }
+  .close-payment {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #888;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .close-payment:hover {
+    color: #fff;
+  }
+
   .empty-cart {
     text-align: center;
     color: #888;
@@ -353,12 +495,12 @@
     font-size: 1.1em;
   }
 
-  /* === RESPONSIVE — EXACTLY LIKE AMAZON === */
+  /* === RESPONSIVE === */
   @media (max-width: 1024px) {
-    .collection { grid-template-columns: repeat(3, 1fr); } /* 3 on tablet */
+    .collection { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 768px) {
-    .collection { grid-template-columns: repeat(2, 1fr); } /* 2 on mobile (your screenshot) */
+    .collection { grid-template-columns: repeat(2, 1fr); }
     header h1 { font-size: 2.8em; letter-spacing: 6px; }
     header { padding: 60px 15px 40px; }
     .cart-icon { top: 20px; right: 20px; font-size: 1.2em; }
@@ -368,9 +510,10 @@
     .price { font-size: 1em; }
     h2.section-title { font-size: 1.5em; }
     .cart-content { padding: 20px; }
+    .payment-content img { width: 150px; height: 150px; }
   }
   @media (max-width: 480px) {
-    .collection { grid-template-columns: repeat(2, 1fr); gap: 12px; } /* Stay 2 even on small phones */
+    .collection { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .btn-buy { font-size: 0.65em; padding: 6px 0; }
   }
 </style>
@@ -385,16 +528,36 @@
   </div>
 </header>
 
+<!-- LIGHTBOX (for image zoom) -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="Zoomed View">
+</div>
+
+<!-- UPI PAYMENT MODAL -->
+<div class="payment-modal" id="paymentModal">
+  <div class="payment-content">
+    <span class="close-payment" onclick="closePayment()">✕</span>
+    <h3>Scan to Pay</h3>
+    <p>Scan this QR code with any UPI app (GPay, PhonePe, Paytm)</p>
+    <img src="GooglePay_QR.png" alt="UPI QR Code">
+    <span class="upi-id">UPI ID: divyeshkhod@oksbi</span>
+    <button class="btn-paid" onclick="confirmUPIPayment()">✓ I Have Paid</button>
+    <button class="btn-checkout-cod" style="margin-top:10px; font-size:0.9em;" onclick="closePayment()">Cancel</button>
+  </div>
+</div>
+
 <section>
   <h2 class="section-title">THE COLLECTION</h2>
   <div class="collection">
 
     <!-- Product 1 -->
     <div class="item">
-      <img src="IMG-20260818-WA0007.jpg" alt="Signature Tee">
+      <img src="IMG-20260818-WA0007.jpg" alt="Signature Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Signature Tee</h3>
         <p>Premium graphic print</p>
+        <span class="stars">★★★★★ <span class="review-count">(124)</span></span>
+        <span class="review-text">"Best quality, loved the fit!"</span>
         <span class="fabric">180 GSM</span>
         <span class="price">399</span>
         <select class="size-select">
@@ -407,10 +570,12 @@
 
     <!-- Product 2 -->
     <div class="item">
-      <img src="IMG-20260818-WA0008.jpg" alt="Classic Print Tee">
+      <img src="IMG-20260818-WA0008.jpg" alt="Classic Print Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Classic Print</h3>
         <p>Bold breathable finish</p>
+        <span class="stars">★★★★☆ <span class="review-count">(89)</span></span>
+        <span class="review-text">"Great print, super soft!"</span>
         <span class="fabric">200 GSM</span>
         <span class="price">499</span>
         <select class="size-select">
@@ -423,10 +588,12 @@
 
     <!-- Product 3 -->
     <div class="item">
-      <img src="IMG-20260818-WA0009.jpg" alt="Heritage Tee">
+      <img src="IMG-20260818-WA0009.jpg" alt="Heritage Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Heritage Tee</h3>
         <p>Refined classic look</p>
+        <span class="stars">★★★★★ <span class="review-count">(210)</span></span>
+        <span class="review-text">"Perfect everyday tee!"</span>
         <span class="fabric">180 GSM</span>
         <span class="price">399</span>
         <select class="size-select">
@@ -439,10 +606,12 @@
 
     <!-- Product 4 -->
     <div class="item">
-      <img src="IMG-20260818-WA0010.jpg" alt="Urban Edition Tee">
+      <img src="IMG-20260818-WA0010.jpg" alt="Urban Edition Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Urban Edition</h3>
         <p>Streetwear premium edge</p>
+        <span class="stars">★★★★☆ <span class="review-count">(67)</span></span>
+        <span class="review-text">"Stylish and comfortable!"</span>
         <span class="fabric">220 GSM</span>
         <span class="price">599</span>
         <select class="size-select">
@@ -455,10 +624,12 @@
 
     <!-- Product 5 -->
     <div class="item">
-      <img src="IMG_20260818_072136.png" alt="Essential Tee">
+      <img src="IMG_20260818_072136.png" alt="Essential Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Essential Tee</h3>
         <p>Everyday staple</p>
+        <span class="stars">★★★★★ <span class="review-count">(342)</span></span>
+        <span class="review-text">"My go-to tee now!"</span>
         <span class="fabric">180 GSM</span>
         <span class="price">399</span>
         <select class="size-select">
@@ -471,10 +642,12 @@
 
     <!-- Product 6 -->
     <div class="item">
-      <img src="IMG_20260818_072150.png" alt="Noir Print Tee">
+      <img src="IMG_20260818_072150.png" alt="Noir Print Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Noir Print</h3>
         <p>Bold monochrome statement</p>
+        <span class="stars">★★★★★ <span class="review-count">(156)</span></span>
+        <span class="review-text">"Absolutely stunning!"</span>
         <span class="fabric">240 GSM</span>
         <span class="price">699</span>
         <select class="size-select">
@@ -487,10 +660,12 @@
 
     <!-- Product 7 -->
     <div class="item">
-      <img src="IMG_20260818_072203.png" alt="Studio Tee">
+      <img src="IMG_20260818_072203.png" alt="Studio Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Studio Tee</h3>
         <p>Minimal modern design</p>
+        <span class="stars">★★★★☆ <span class="review-count">(92)</span></span>
+        <span class="review-text">"Clean and premium feel."</span>
         <span class="fabric">200 GSM</span>
         <span class="price">499</span>
         <select class="size-select">
@@ -503,10 +678,12 @@
 
     <!-- Product 8 -->
     <div class="item">
-      <img src="IMG_20260818_072227.png" alt="Legacy Tee">
+      <img src="IMG_20260818_072227.png" alt="Legacy Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Legacy Tee</h3>
         <p>Timeless design</p>
+        <span class="stars">★★★★★ <span class="review-count">(278)</span></span>
+        <span class="review-text">"Worth every rupee!"</span>
         <span class="fabric">180 GSM</span>
         <span class="price">399</span>
         <select class="size-select">
@@ -519,10 +696,12 @@
 
     <!-- Product 9 -->
     <div class="item">
-      <img src="_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg" alt="Motion Tee">
+      <img src="_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg" alt="Motion Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Motion Tee</h3>
         <p>Active-fit sporty vibe</p>
+        <span class="stars">★★★★★ <span class="review-count">(143)</span></span>
+        <span class="review-text">"Perfect for workouts!"</span>
         <span class="fabric">220 GSM</span>
         <span class="price">599</span>
         <select class="size-select">
@@ -535,145 +714,16 @@
 
     <!-- Product 10 -->
     <div class="item">
-      <img src="file_000000004c8c8208a2649d04e962b7b5.png" alt="Origin Tee">
+      <img src="file_000000004c8c8208a2649d04e962b7b5.png" alt="Origin Tee" onclick="openLightbox(this.src)">
       <div class="item-info">
         <h3>Origin Tee</h3>
         <p>Founder's edition</p>
+        <span class="stars">★★★★★ <span class="review-count">(501)</span></span>
+        <span class="review-text">"The best tee ever!"</span>
         <span class="fabric">240 GSM</span>
         <span class="price">699</span>
         <select class="size-select">
           <option value="S">S</option><option value="M" selected>M</option>
           <option value="L">L</option><option value="XL">XL</option>
         </select>
-        <button class="btn-buy" onclick="addToCart('Origin Tee', 699, 'file_000000004c8c8208a2649d04e962b7b5.png')">Add</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  <p>📍 VEYRO — Elevated Essentials</p>
-  <a href="https://instagram.com/divyesh_khod_" target="_blank">Instagram</a>
-  <a href="mailto:divyeshkhod@gmail.com">Email</a>
-</footer>
-
-<!-- === CART MODAL === -->
-<div class="cart-modal" id="cartModal">
-  <div class="cart-content">
-    <span class="close-cart" onclick="closeCart()">✕</span>
-    <h2>YOUR CART</h2>
-    <div id="cartItems"></div>
-    <div class="cart-total">
-      Total: <span id="cartTotal">₹0</span>
-    </div>
-    <button class="btn-checkout" onclick="checkout()">Checkout</button>
-  </div>
-</div>
-
-<!-- === JAVASCRIPT === -->
-<script>
-  let cart = JSON.parse(localStorage.getItem('veyroCart')) || [];
-
-  function saveCart() {
-    localStorage.setItem('veyroCart', JSON.stringify(cart));
-    updateCartUI();
-  }
-
-  function addToCart(name, price, image) {
-    const card = event.target.closest('.item');
-    const sizeSelect = card.querySelector('.size-select');
-    const size = sizeSelect ? sizeSelect.value : 'M';
-
-    const existing = cart.find(item => item.name === name && item.size === size);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ name, price, image, size, quantity: 1 });
-    }
-    saveCart();
-    openCart();
-  }
-
-  function removeFromCart(name, size) {
-    cart = cart.filter(item => !(item.name === name && item.size === size));
-    saveCart();
-  }
-
-  function changeQuantity(name, size, delta) {
-    const item = cart.find(i => i.name === name && i.size === size);
-    if (item) {
-      item.quantity += delta;
-      if (item.quantity <= 0) {
-        removeFromCart(name, size);
-        return;
-      }
-      saveCart();
-    }
-  }
-
-  function updateCartUI() {
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cartCount').textContent = count;
-
-    const cartItemsDiv = document.getElementById('cartItems');
-    if (cart.length === 0) {
-      cartItemsDiv.innerHTML = `<div class="empty-cart">Your cart is empty.</div>`;
-      document.getElementById('cartTotal').textContent = '₹0';
-      return;
-    }
-
-    let html = '';
-    let total = 0;
-    cart.forEach((item) => {
-      total += item.price * item.quantity;
-      html += `
-        <div class="cart-item">
-          <img src="${item.image}" alt="${item.name}">
-          <div class="cart-item-info">
-            <h4>${item.name}</h4>
-            <span class="size-tag">Size: ${item.size}</span>
-            <span class="price">₹${item.price}</span>
-          </div>
-          <div class="cart-item-actions">
-            <button onclick="changeQuantity('${item.name}', '${item.size}', -1)">−</button>
-            <span>${item.quantity}</span>
-            <button onclick="changeQuantity('${item.name}', '${item.size}', 1)">+</button>
-            <button onclick="removeFromCart('${item.name}', '${item.size}')" style="background:#b33;color:#fff;">✕</button>
-          </div>
-        </div>
-      `;
-    });
-    cartItemsDiv.innerHTML = html;
-    document.getElementById('cartTotal').textContent = `₹${total}`;
-  }
-
-  function openCart() {
-    updateCartUI();
-    document.getElementById('cartModal').classList.add('active');
-  }
-
-  function closeCart() {
-    document.getElementById('cartModal').classList.remove('active');
-  }
-
-  function checkout() {
-    if (cart.length === 0) {
-      alert('Your cart is empty!');
-      return;
-    }
-    alert('Thank you for your order! 🎉 We will contact you shortly.');
-    cart = [];
-    saveCart();
-    closeCart();
-  }
-
-  document.getElementById('cartModal').addEventListener('click', function(e) {
-    if (e.target === this) closeCart();
-  });
-
-  updateCartUI();
-</script>
-
-</body>
-  </html>
+        <button class="btn-buy" onclick="addToCart('Origin Tee', 699, 'file_000000004c8c8208a2649d04e962b7b5.

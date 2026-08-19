@@ -644,7 +644,7 @@
       cart.push({ name, price, image, size, quantity: 1 });
     }
     saveCart();
-    openCart();
+    openCart(); // This instantly opens the cart
   }
 
   function removeFromCart(name, size) {
@@ -674,16 +674,18 @@
 
     if (cart.length === 0) {
       cartItemsDiv.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
-    } else {
-      cartItemsDiv.innerHTML = cart.map(item => {
-        totalItems += item.quantity;
-        totalPrice += item.price * item.quantity;
-        return `
-          <div class="cart-item">
-            <img src="${item.image}" alt="${item.name}">
-            <div class="cart-item-info">
-              <h4>${item.name}</h4>
-              <span class="size-tag">Size: ${item.size}</span>
-              <span class="price">${item.price}</span>
-            </div>
-            <div class="car
+      cartCount.textContent = '0';
+      cartTotal.textContent = '₹0';
+      return;
+    }
+
+    let html = '';
+    cart.forEach(item => {
+      totalItems += item.quantity;
+      totalPrice += item.price * item.quantity;
+      html += `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-item-info">
+            <h4>${item.name}</h4>
+            <span class="size-tag">Size: ${item.size}</span>

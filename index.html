@@ -43,7 +43,7 @@
   /* === SECTION === */
   section {
     padding: 70px 20px;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   h2.section-title {
@@ -65,10 +65,10 @@
     opacity: 0.5;
   }
 
-  /* === COLLECTION GRID === */
+  /* === COLLECTION GRID — 2 COLUMNS === */
   .collection {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* 2 products side by side */
     gap: 30px;
   }
 
@@ -87,7 +87,7 @@
     box-shadow: 0 12px 40px rgba(212, 175, 55, 0.15);
   }
   
-  /* === FIXED IMAGE — NO CROPPING === */
+  /* === IMAGE — NO CROPPING === */
   .item img {
     width: 100%;
     height: auto;
@@ -113,10 +113,19 @@
     font-size: 1.15em;
   }
   .item p {
-    color: #999;
+    color: #ccc;
     font-size: 0.85em;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     font-weight: 300;
+    line-height: 1.5;
+  }
+  .item .fabric {
+    color: #d4af37;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: block;
   }
   .price {
     color: #f5f5f5;
@@ -172,19 +181,16 @@
     text-decoration: underline;
   }
 
-  /* === RESPONSIVE === */
+  /* === RESPONSIVE — 1 COLUMN ON MOBILE === */
   @media (max-width: 600px) {
     header h1 { font-size: 2.8em; letter-spacing: 6px; }
     header { padding: 60px 15px 40px; }
-    .collection { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .collection { grid-template-columns: 1fr; } /* 1 product per row on mobile */
     .item img { aspect-ratio: 1/1; } /* square on mobile */
     .item-info { padding: 14px 12px 18px; }
     .item h3 { font-size: 1em; }
     .price { font-size: 1.1em; }
     h2.section-title { font-size: 1.5em; }
-  }
-  @media (max-width: 400px) {
-    .collection { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -204,7 +210,8 @@
       <img src="IMG-20260818-WA0007.jpg" alt="Signature Tee">
       <div class="item-info">
         <h3>Signature Tee</h3>
-        <p>Premium print, soft cotton finish.</p>
+        <p>Premium graphic print with a clean, modern aesthetic.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -215,7 +222,8 @@
       <img src="IMG-20260818-WA0008.jpg" alt="Classic Print Tee">
       <div class="item-info">
         <h3>Classic Print Tee</h3>
-        <p>Premium print, breathable fabric.</p>
+        <p>Timeless design with a bold, breathable finish.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -226,7 +234,8 @@
       <img src="IMG-20260818-WA0009.jpg" alt="Heritage Tee">
       <div class="item-info">
         <h3>Heritage Tee</h3>
-        <p>Premium print, everyday comfort fit.</p>
+        <p>Everyday comfort with a refined, classic look.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -237,7 +246,8 @@
       <img src="IMG-20260818-WA0010.jpg" alt="Urban Edition Tee">
       <div class="item-info">
         <h3>Urban Edition Tee</h3>
-        <p>Premium print, relaxed streetwear cut.</p>
+        <p>Relaxed streetwear cut with a premium edge.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -248,7 +258,8 @@
       <img src="IMG_20260818_072136.png" alt="Essential Tee">
       <div class="item-info">
         <h3>Essential Tee</h3>
-        <p>Premium print, everyday staple.</p>
+        <p>Your everyday staple — minimal, soft, and durable.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -259,7 +270,8 @@
       <img src="IMG_20260818_072150.png" alt="Noir Print Tee">
       <div class="item-info">
         <h3>Noir Print Tee</h3>
-        <p>Premium print, bold statement piece.</p>
+        <p>Bold monochrome statement piece for standout looks.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -270,7 +282,8 @@
       <img src="IMG_20260818_072203.png" alt="Studio Tee">
       <div class="item-info">
         <h3>Studio Tee</h3>
-        <p>Premium print, minimal modern look.</p>
+        <p>Minimal modern design with a premium finish.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -281,7 +294,8 @@
       <img src="IMG_20260818_072227.png" alt="Legacy Tee">
       <div class="item-info">
         <h3>Legacy Tee</h3>
-        <p>Premium print, timeless design.</p>
+        <p>Timeless design that never goes out of style.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -292,7 +306,8 @@
       <img src="_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg" alt="Motion Tee">
       <div class="item-info">
         <h3>Motion Tee</h3>
-        <p>Premium print, active-fit comfort.</p>
+        <p>Active-fit comfort with a dynamic, sporty vibe.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>
@@ -303,7 +318,8 @@
       <img src="file_000000004c8c8208a2649d04e962b7b5.png" alt="Origin Tee">
       <div class="item-info">
         <h3>Origin Tee</h3>
-        <p>Premium print, founder's edition.</p>
+        <p>Founder's edition — the tee that started it all.</p>
+        <span class="fabric">100% Combed Cotton • 180 GSM</span>
         <span class="price">399</span>
         <button class="btn-buy">Add to Cart</button>
       </div>

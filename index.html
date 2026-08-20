@@ -1,833 +1,1180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="VEYRO — Elevated Essentials. Premium streetwear tees.">
-  <title>VEYRO — Elevated Essentials</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0d0d0d;
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    button,
-    select {
-      font: inherit;
-    }
-
-    header {
-      position: relative;
-      text-align: center;
-      padding: 80px 20px 40px;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-      background: linear-gradient(180deg, #0d0d0d 60%, #1a1a1a);
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4em;
-      letter-spacing: 12px;
-      color: #d4af37;
-      text-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
-    }
-
-    header p {
-      color: #aaa;
-      letter-spacing: 4px;
-      margin-top: 12px;
-      font-weight: 300;
-      text-transform: uppercase;
-      font-size: 0.9em;
-    }
-
-    .cart-icon {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #d4af37;
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-      font-size: 1.4em;
-      transition: color 0.3s;
-    }
-
-    .cart-icon:hover {
-      color: #fff;
-    }
-
-    .cart-count {
-      background: #d4af37;
-      color: #0d0d0d;
-      border-radius: 50%;
-      padding: 2px 10px;
-      font-size: 0.7em;
-      font-weight: 700;
-    }
-
-    section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
-
-    .section-title {
-      position: relative;
-      margin-bottom: 40px;
-      color: #d4af37;
-      font-family: 'Playfair Display', serif;
-      font-size: 2em;
-      letter-spacing: 3px;
-      text-align: center;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 2px;
-      margin: 15px auto 0;
-      background: #d4af37;
-      opacity: 0.5;
-    }
-
-    .collection {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .item {
-      overflow: hidden;
-      padding-bottom: 15px;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      border-radius: 8px;
-      transition: 0.3s ease;
-    }
-
-    .item:hover {
-      transform: translateY(-5px);
-      border-color: #d4af37;
-      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
-    }
-
-    .item > img {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      padding: 10px;
-      object-fit: contain;
-      background: #0d0d0d;
-      cursor: zoom-in;
-      transition: transform 0.5s ease;
-    }
-
-    .item:hover > img {
-      transform: scale(1.03);
-    }
-
-    .item-info {
-      padding: 10px 15px 5px;
-    }
-
-    .item h3 {
-      margin-bottom: 4px;
-      color: #d4af37;
-      font-family: 'Playfair Display', serif;
-      font-size: 1em;
-      letter-spacing: 1px;
-    }
-
-    .item p {
-      margin-bottom: 4px;
-      color: #ccc;
-      font-size: 0.8em;
-      font-weight: 300;
-    }
-
-    .fabric {
-      display: block;
-      margin-bottom: 8px;
-      color: #d4af37;
-      font-size: 0.7em;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .price {
-      display: block;
-      margin-bottom: 6px;
-      color: #f5f5f5;
-      font-size: 1.2em;
-      font-weight: 600;
-    }
-
-    .price::before {
-      content: '₹';
-      margin-right: 2px;
-      font-weight: 400;
-    }
-
-    .size-select {
-      width: 100%;
-      margin: 6px 0 8px;
-      padding: 5px 8px;
-      color: #f5f5f5;
-      background: #0d0d0d;
-      border: 1px solid #d4af37;
-      border-radius: 4px;
-      cursor: pointer;
-      outline: none;
-      font-size: 0.8em;
-    }
-
-    .btn-buy {
-      display: block;
-      width: 100%;
-      margin-top: 6px;
-      padding: 8px 0;
-      color: #d4af37;
-      background: transparent;
-      border: 1px solid #d4af37;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.75em;
-      letter-spacing: 1px;
-      text-align: center;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
-
-    .btn-buy:hover {
-      color: #0d0d0d;
-      background: #d4af37;
-    }
-
-    footer {
-      padding: 40px 20px;
-      color: #888;
-      background: #0a0a0a;
-      border-top: 1px solid #1a1a1a;
-      text-align: center;
-    }
-
-    footer p {
-      margin-bottom: 15px;
-      font-weight: 300;
-    }
-
-    footer a {
-      margin: 0 15px;
-      color: #d4af37;
-      font-size: 0.95em;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    footer a:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    .lightbox,
-    .cart-modal,
-    .payment-modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lightbox {
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.95);
-      cursor: zoom-out;
-    }
-
-    .lightbox.active,
-    .cart-modal.active,
-    .payment-modal.active {
-      display: flex;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-      border: 1px solid #d4af37;
-      border-radius: 8px;
-    }
-
-    .cart-modal {
-      z-index: 999;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(4px);
-    }
-
-    .cart-content {
-      position: relative;
-      width: 90%;
-      max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
-      padding: 30px;
-      background: #1a1a1a;
-      border: 1px solid #d4af37;
-      border-radius: 16px;
-    }
-
-    .cart-content h2 {
-      margin-bottom: 20px;
-      color: #d4af37;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 2px;
-      text-align: center;
-    }
-
-    .close-cart,
-    .close-payment {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      color: #d4af37;
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-      font-size: 1.8em;
-    }
-
-    .close-cart:hover,
-    .close-payment:hover {
-      color: #fff;
-    }
-
-    .cart-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 12px 0;
-      border-bottom: 1px solid #333;
-    }
-
-    .cart-item img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .cart-item-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .cart-item-info h4 {
-      overflow: hidden;
-      color: #d4af37;
-      font-size: 0.95em;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .size-tag {
-      display: block;
-      color: #aaa;
-      font-size: 0.8em;
-    }
-
-    .cart-item-info .price {
-      margin: 0;
-      font-size: 1em;
-    }
-
-    .cart-item-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .cart-item-actions button {
-      min-width: 30px;
-      padding: 4px 8px;
-      color: #fff;
-      background: #333;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-
-    .cart-item-actions button:hover {
-      color: #0d0d0d;
-      background: #d4af37;
-    }
-
-    .cart-total {
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 2px solid #333;
-      font-size: 1.4em;
-      text-align: right;
-    }
-
-    .cart-total span {
-      color: #d4af37;
-    }
-
-    .checkout-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .btn-checkout-upi,
-    .btn-checkout-cod,
-    .btn-paid {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.05em;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .btn-checkout-upi,
-    .btn-paid {
-      color: #0d0d0d;
-      background: #d4af37;
-      border: none;
-    }
-
-    .btn-checkout-upi:hover,
-    .btn-paid:hover {
-      background: #b8962e;
-    }
-
-    .btn-checkout-cod {
-      color: #d4af37;
-      background: transparent;
-      border: 2px solid #d4af37;
-    }
-
-    .btn-checkout-cod:hover {
-      color: #0d0d0d;
-      background: #d4af37;
-    }
-
-    .payment-modal {
-      z-index: 1001;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.9);
-    }
-
-    .payment-content {
-      position: relative;
-      width: 90%;
-      max-width: 400px;
-      padding: 30px;
-      background: #1a1a1a;
-      border: 1px solid #d4af37;
-      border-radius: 16px;
-      text-align: center;
-    }
-
-    .payment-content h3 {
-      margin-bottom: 10px;
-      color: #d4af37;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .payment-content p {
-      margin-bottom: 20px;
-      color: #aaa;
-      font-size: 0.9em;
-    }
-
-    .payment-content img {
-      width: 200px;
-      height: 200px;
-      margin: 10px auto;
-      padding: 10px;
-      background: #fff;
-      border: 1px solid #333;
-      border-radius: 8px;
-    }
-
-    .upi-id {
-      display: block;
-      margin: 10px 0 20px;
-      color: #d4af37;
-      font-weight: 500;
-    }
-
-    .empty-cart {
-      padding: 30px 0;
-      color: #888;
-      font-size: 1.1em;
-      text-align: center;
-    }
-
-    @media (max-width: 1024px) {
-      .collection {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .collection {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      header {
-        padding: 60px 15px 40px;
-      }
-
-      header h1 {
-        font-size: 2.8em;
-        letter-spacing: 6px;
-      }
-
-      .cart-icon {
-        top: 20px;
-        right: 20px;
-        font-size: 1.2em;
-      }
-
-      .item > img {
-        aspect-ratio: 1 / 1;
-      }
-
-      .item-info {
-        padding: 10px 12px 5px;
-      }
-
-      .item h3 {
-        font-size: 0.9em;
-      }
-
-      .price {
-        font-size: 1em;
-      }
-
-      .section-title {
-        font-size: 1.5em;
-      }
-
-      .cart-content {
-        padding: 20px;
-      }
-
-      .payment-content img {
-        width: 150px;
-        height: 150px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .collection {
-        gap: 12px;
-      }
-
-      .btn-buy {
-        padding: 6px 0;
-        font-size: 0.65em;
-      }
-
-      .cart-item {
-        gap: 8px;
-      }
-
-      .cart-item img {
-        width: 48px;
-        height: 48px;
-      }
-
-      .cart-item-actions {
-        gap: 3px;
-      }
-
-      .cart-item-actions button {
-        min-width: 25px;
-        padding: 3px 5px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VEYRO — Elevated Essentials</title>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0d0d0d;
+  color: #f5f5f5;
+  line-height: 1.6;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ================= HEADER ================= */
+
+header {
+  text-align: center;
+  padding: 80px 20px 40px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  background: linear-gradient(
+    180deg,
+    #0d0d0d 60%,
+    #1a1a1a
+  );
+  position: relative;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4em;
+  letter-spacing: 12px;
+  color: #d4af37;
+  text-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+}
+
+header p {
+  color: #aaa;
+  letter-spacing: 4px;
+  margin-top: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+/* ================= CART ICON ================= */
+
+.cart-icon {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: #d4af37;
+  font-size: 1.4em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
+}
+
+.cart-icon:hover {
+  color: #fff;
+}
+
+.cart-count {
+  background: #d4af37;
+  color: #0d0d0d;
+  border-radius: 50%;
+  padding: 2px 10px;
+  font-size: 0.7em;
+  font-weight: 700;
+}
+
+/* ================= SECTION ================= */
+
+section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2.section-title {
+  font-family: 'Playfair Display', serif;
+  color: #d4af37;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+  font-size: 2em;
+  text-align: center;
+  position: relative;
+}
+
+h2.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: #d4af37;
+  margin: 15px auto 0;
+  opacity: 0.5;
+}
+
+/* ================= COLLECTION ================= */
+
+.collection {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.item {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding-bottom: 15px;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+  border-color: #d4af37;
+  box-shadow:
+    0 8px 30px rgba(212, 175, 55, 0.15);
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  background: #0d0d0d;
+  padding: 10px;
+  transition: transform 0.5s ease;
+  cursor: zoom-in;
+}
+
+.item:hover img {
+  transform: scale(1.03);
+}
+
+.item-info {
+  padding: 10px 15px 5px;
+  text-align: left;
+}
+
+.item h3 {
+  font-family: 'Playfair Display', serif;
+  color: #d4af37;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  font-size: 1em;
+}
+
+.item p {
+  color: #ccc;
+  font-size: 0.8em;
+  margin-bottom: 4px;
+  font-weight: 300;
+}
+
+.item .fabric {
+  color: #d4af37;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.price {
+  color: #f5f5f5;
+  font-size: 1.2em;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.price::before {
+  content: '₹';
+  font-weight: 400;
+  margin-right: 2px;
+}
+
+/* ================= SIZE ================= */
+
+.size-select {
+  width: 100%;
+  margin: 6px 0 8px;
+  background: #0d0d0d;
+  color: #f5f5f5;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8em;
+  cursor: pointer;
+  outline: none;
+}
+
+/* ================= ADD BUTTON ================= */
+
+.btn-buy {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 0;
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.btn-buy:hover {
+  background: #d4af37;
+  color: #0d0d0d;
+}
+
+/* ================= LIGHTBOX ================= */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+  padding: 20px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #d4af37;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid #1a1a1a;
+  color: #888;
+  background: #0a0a0a;
+}
+
+footer p {
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+footer a {
+  color: #d4af37;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s;
+  font-size: 0.95em;
+}
+
+footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ================= CART MODAL ================= */
+
+.cart-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.cart-modal.active {
+  display: flex;
+}
+
+.cart-content {
+  background: #1a1a1a;
+  border: 1px solid #d4af37;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.cart-content h2 {
+  font-family: 'Playfair Display', serif;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+/* ================= CLOSE CART ================= */
+
+.close-cart {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #d4af37;
+  font-size: 1.8em;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-cart:hover {
+  color: #fff;
+}
+
+/* ================= CART ITEM ================= */
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+}
+
+.cart-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #0d0d0d;
+}
+
+.cart-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cart-item-info h4 {
+  color: #d4af37;
+  font-size: 0.95em;
+}
+
+.cart-item-info .size-tag {
+  color: #aaa;
+  font-size: 0.8em;
+  display: block;
+}
+
+.cart-item-info .price {
+  font-size: 1em;
+  margin-bottom: 0;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.cart-item-actions button {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+.cart-item-actions button:hover {
+  background: #d4af37;
+  color: #0d0d0d;
+}
+
+.cart-item-actions span {
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ================= CART TOTAL ================= */
+
+.cart-total {
+  text-align: right;
+  font-size: 1.4em;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #333;
+}
+
+.cart-total span {
+  color: #d4af37;
+}
+
+/* ================= CHECKOUT ================= */
+
+.checkout-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-checkout-upi {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: #d4af37;
+  color: #0d0d0d;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-checkout-upi:hover {
+  background: #b8962e;
+}
+
+.btn-checkout-cod {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 2px solid #d4af37;
+  color: #d4af37;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-checkout-cod:hover {
+  background: #d4af37;
+  color: #0d0d0d;
+}
+
+/* ================= PAYMENT MODAL ================= */
+
+.payment-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1001;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.payment-modal.active {
+  display: flex;
+}
+
+.payment-content {
+  background: #1a1a1a;
+  border: 1px solid #d4af37;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.payment-content h3 {
+  color: #d4af37;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 10px;
+}
+
+.payment-content p {
+  color: #aaa;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
+
+.payment-content img {
+  width: 200px;
+  height: 200px;
+  margin: 10px auto;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+
+.payment-content .upi-id {
+  color: #d4af37;
+  font-weight: 500;
+  font-size: 1em;
+  margin: 10px 0 20px;
+  display: block;
+  word-break: break-word;
+}
+
+.btn-paid {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #d4af37;
+  color: #0d0d0d;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-paid:hover {
+  background: #b8962e;
+}
+
+.close-payment {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #888;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-payment:hover {
+  color: #fff;
+}
+
+/* ================= EMPTY CART ================= */
+
+.empty-cart {
+  text-align: center;
+  color: #888;
+  padding: 30px 0;
+  font-size: 1.1em;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+
+  .collection {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .collection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  header h1 {
+    font-size: 2.8em;
+    letter-spacing: 6px;
+  }
+
+  header {
+    padding: 60px 15px 40px;
+  }
+
+  .cart-icon {
+    top: 20px;
+    right: 20px;
+    font-size: 1.2em;
+  }
+
+  .item img {
+    aspect-ratio: 1 / 1;
+  }
+
+  .item-info {
+    padding: 10px 12px 5px;
+  }
+
+  .item h3 {
+    font-size: 0.9em;
+  }
+
+  .price {
+    font-size: 1em;
+  }
+
+  h2.section-title {
+    font-size: 1.5em;
+  }
+
+  .cart-content {
+    padding: 20px;
+    width: 95%;
+  }
+
+  .payment-content img {
+    width: 150px;
+    height: 150px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .collection {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .btn-buy {
+    font-size: 0.65em;
+    padding: 6px 0;
+  }
+
+  .cart-item {
+    gap: 8px;
+  }
+
+  .cart-item img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cart-item-actions {
+    gap: 4px;
+  }
+
+  .cart-item-actions button {
+    padding: 3px 7px;
+  }
+
+  .cart-item-info h4 {
+    font-size: 0.8em;
+  }
+
+}
+
+/* ================= ACCESSIBILITY ================= */
+
+button,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 3px;
+}
+
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>VEYRO</h1>
-    <p>ELEVATED ESSENTIALS</p>
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header>
+
+  <h1>VEYRO</h1>
+
+  <p>ELEVATED ESSENTIALS</p>
+
+  <div
+    class="cart-icon"
+    onclick="openCart()"
+    role="button"
+    tabindex="0"
+    aria-label="Open shopping cart"
+    onkeydown="if(event.key === 'Enter' || event.key === ' ') openCart()"
+  >
+    🛒
+    <span
+      class="cart-count"
+      id="cartCount"
+    >0</span>
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     LIGHTBOX
+     ========================================================= -->
+
+<div
+  class="lightbox"
+  id="lightbox"
+  onclick="closeLightbox()"
+>
+  <img
+    id="lightboxImg"
+    src=""
+    alt="Zoomed View"
+    onclick="event.stopPropagation()"
+  >
+</div>
+
+
+<!-- =========================================================
+     PAYMENT MODAL
+     ========================================================= -->
+
+<div
+  class="payment-modal"
+  id="paymentModal"
+>
+
+  <div
+    class="payment-content"
+    onclick="event.stopPropagation()"
+  >
+
+    <span
+      class="close-payment"
+      onclick="closePayment()"
+      role="button"
+      tabindex="0"
+    >
+      ✕
+    </span>
+
+    <h3>Scan to Pay</h3>
+
+    <p>
+      Scan this QR code with any UPI app
+      (GPay, PhonePe, Paytm)
+    </p>
+
+    <img
+      src="GooglePay_QR.png"
+      alt="UPI QR Code"
+      onerror="this.alt='UPI QR code image not found'"
+    >
+
+    <span class="upi-id">
+      UPI ID: divyeshkhod@oksbi
+    </span>
 
     <button
-      class="cart-icon"
-      type="button"
-      aria-label="Open shopping cart"
-      onclick="openCart()"
+      class="btn-paid"
+      onclick="confirmUPIPayment()"
     >
-      🛒 <span class="cart-count" id="cartCount">0</span>
+      ✓ I Have Paid
     </button>
-  </header>
 
-  <div
-    class="lightbox"
-    id="lightbox"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Product image"
-    onclick="closeLightbox()"
-  >
-    <img id="lightboxImg" src="" alt="Zoomed product view">
+    <button
+      class="btn-checkout-cod"
+      style="margin-top:10px; font-size:0.9em;"
+      onclick="closePayment()"
+    >
+      Cancel
+    </button>
+
   </div>
 
-  <div
-    class="payment-modal"
-    id="paymentModal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="paymentTitle"
-  >
-    <div class="payment-content">
-      <button
-        class="close-payment"
-        type="button"
-        aria-label="Close payment dialog"
-        onclick="closePayment()"
+</div>
+
+
+<!-- =========================================================
+     COLLECTION
+     ========================================================= -->
+
+<section>
+
+  <h2 class="section-title">
+    THE COLLECTION
+  </h2>
+
+  <div class="collection">
+
+
+    <!-- SIGNATURE TEE -->
+
+    <div class="item">
+
+      <img
+        src="IMG-20260818-WA0007.jpg"
+        alt="Signature Tee"
+        onclick="openLightbox(this.src)"
       >
-        ✕
-      </button>
 
-      <h3 id="paymentTitle">Scan to Pay</h3>
-      <p>Scan this QR code with any UPI app such as GPay, PhonePe, or Paytm.</p>
+      <div class="item-info">
 
-      <img src="GooglePay_QR.png" alt="UPI QR code">
+        <h3>Signature Tee</h3>
 
-      <span class="upi-id">UPI ID: divyeshkhod@oksbi</span>
+        <p>Premium graphic print</p>
 
-      <button class="btn-paid" type="button" onclick="confirmUPIPayment()">
-        ✓ I Have Paid
-      </button>
+        <span class="fabric">
+          180 GSM
+        </span>
 
-      <button
-        class="btn-checkout-cod"
-        type="button"
-        style="margin-top:10px; font-size:0.9em;"
-        onclick="closePayment()"
-      >
-        Cancel
-      </button>
+        <span class="price">
+          399
+        </span>
+
+        <select class="size-select" aria-label="Select size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
+        <button
+          class="btn-buy"
+          onclick="addToCart(
+            this,
+            'Signature Tee',
+            399,
+            'IMG-20260818-WA0007.jpg'
+          )"
+        >
+          ADD
+        </button>
+
+      </div>
     </div>
-  </div>
 
-  <main>
-    <section>
-      <h2 class="section-title">THE COLLECTION</h2>
 
-      <div class="collection">
+    <!-- CLASSIC PRINT -->
 
-        <div class="item">
-          <img src="IMG-20260818-WA0007.jpg" alt="Signature Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Signature Tee</h3>
-            <p>Premium graphic print</p>
-            <span class="fabric">180 GSM</span>
-            <span class="price">399</span>
-            <select class="size-select" aria-label="Select Signature Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Signature Tee', 399, 'IMG-20260818-WA0007.jpg')">
-              ADD
-            </button>
-          </div>
-        </div>
+    <div class="item">
 
-        <div class="item">
-          <img src="IMG-20260818-WA0008.jpg" alt="Classic Print Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Classic Print</h3>
-            <p>Bold breathable finish</p>
-            <span class="fabric">200 GSM</span>
-            <span class="price">499</span>
-            <select class="size-select" aria-label="Select Classic Print Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Classic Print Tee', 499, 'IMG-20260818-WA0008.jpg')">
-              ADD
-            </button>
-          </div>
-        </div>
+      <img
+        src="IMG-20260818-WA0008.jpg"
+        alt="Classic Print Tee"
+        onclick="openLightbox(this.src)"
+      >
 
-        <div class="item">
-          <img src="IMG-20260818-WA0009.jpg" alt="Heritage Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Heritage Tee</h3>
-            <p>Refined classic look</p>
-            <span class="fabric">180 GSM</span>
-            <span class="price">399</span>
-            <select class="size-select" aria-label="Select Heritage Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Heritage Tee', 399, 'IMG-20260818-WA0009.jpg')">
-              ADD
-            </button>
-          </div>
-        </div>
+      <div class="item-info">
 
-        <div class="item">
-          <img src="IMG-20260818-WA0010.jpg" alt="Urban Edition Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Urban Edition</h3>
-            <p>Streetwear premium edge</p>
-            <span class="fabric">220 GSM</span>
-            <span class="price">599</span>
-            <select class="size-select" aria-label="Select Urban Edition Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Urban Edition Tee', 599, 'IMG-20260818-WA0010.jpg')">
-              ADD
-            </button>
-          </div>
-        </div>
+        <h3>Classic Print</h3>
 
-        <div class="item">
-          <img src="IMG_20260818_072136.png" alt="Essential Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Essential Tee</h3>
-            <p>Everyday staple</p>
-            <span class="fabric">180 GSM</span>
-            <span class="price">399</span>
-            <select class="size-select" aria-label="Select Essential Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Essential Tee', 399, 'IMG_20260818_072136.png')">
-              ADD
-            </button>
-          </div>
-        </div>
+        <p>Bold breathable finish</p>
 
-        <div class="item">
-          <img src="IMG_20260818_072150.png" alt="Noir Print Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Noir Print</h3>
-            <p>Bold monochrome statement</p>
-            <span class="fabric">240 GSM</span>
-            <span class="price">699</span>
-            <select class="size-select" aria-label="Select Noir Print Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Noir Print Tee', 699, 'IMG_20260818_072150.png')">
-              ADD
-            </button>
-          </div>
-        </div>
+        <span class="fabric">
+          200 GSM
+        </span>
 
-        <div class="item">
-          <img src="IMG_20260818_072203.png" alt="Studio Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Studio Tee</h3>
-            <p>Minimal modern design</p>
-            <span class="fabric">200 GSM</span>
-            <span class="price">499</span>
-            <select class="size-select" aria-label="Select Studio Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Studio Tee', 499, 'IMG_20260818_072203.png')">
-              ADD
-            </button>
-          </div>
-        </div>
+        <span class="price">
+          499
+        </span>
 
-        <div class="item">
-          <img src="IMG_20260818_072227.png" alt="Legacy Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Legacy Tee</h3>
-            <p>Timeless design</p>
-            <span class="fabric">180 GSM</span>
-            <span class="price">399</span>
-            <select class="size-select" aria-label="Select Legacy Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Legacy Tee', 399, 'IMG_20260818_072227.png')">
-              ADD
-            </button>
-          </div>
-        </div>
+        <select class="size-select" aria-label="Select size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
 
-        <div class="item">
-          <img src="_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg" alt="Motion Tee" onclick="openLightbox(this.src)">
-          <div class="item-info">
-            <h3>Motion Tee</h3>
-            <p>Active-fit sporty vibe</p>
-            <span class="fabric">220 GSM</span>
-            <span class="price">599</span>
-            <select class="size-select" aria-label="Select Motion Tee size">
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-            <button class="btn-buy" type="button" onclick="addToCart(this, 'Motion Tee', 599, '_8f44ac05-1bf6-4936-9bd5-1dd0f51f99f5.jpeg')">
-              ADD
-            </button>
-          </div>
-        </div>
+        <button
+          class="btn-buy"
+          onclick="addToCart(
+            this,
+            'Classic Print Tee',
+            499,
+            'IMG-20260818-WA0008.jpg'
+          )"
+        >
+          ADD
+        </button>
 
-        <div class="item">
-          <img src="file_000000004c8c8208a2649d04e962b7b5.png" alt="Origin Tee" onclick="openLightbox(this.src)">
-          <div class="item-
+      </div>
+    </div>
+
+
+    <!-- HERITAGE TEE -->
+
+    <div class="item">
+
+      <img
+        src="IMG-20260818-WA0009.jpg"
+        alt="Heritage Tee"
+        onclick="openLightbox(this.src)"
+      >
+
+      <div class="item-info">
+
+        <h3>Heritage Tee</h3>
+
+        <p>Refined classic look</p>
+
+        <span class="fabric">
+          180 GSM
+        </span>
+
+        <span class="price">
+          399
+        </span>
+
+        <select class="size-select" aria-label="Select size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
+        <button
+          class="btn-buy"
+          onclick="addToCart(
+            this,
+            'Heritage Tee',
+            399,
+            'IMG-20260818-WA0009.jpg'
+          )"
+        >
+          ADD
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- URBAN EDITION -->
+
+    <div class="item">
+
+      <img
+        src="IMG-20260818-WA0010.jpg"
+        alt="Urban Edition Tee"
+        onclick="openLightbox(this.src)"
+      >
+
+      <div class="item-info">
+
+        <h3>Urban Edition</h3>
+
+        <p>Streetwear premium edge</p>
+
+        <span class="fabric">
+          220 GSM
+        </span>
+
+        <span class="price">
+          599
+        </span>
+
+        <select class="size-select" aria-label="Select size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
+        <button
+          class="btn-buy"
+          onclick="addToCart(
+            this,
+            'Urban Edition Tee',
+            599,
+            'IMG-20260818-WA0010.jpg'
+          )"
+        >
+          ADD
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- ESSENTIAL TEE -->
+
+    <div class="item">
+
+      <img
+        src="IMG_20260818_072136.png"
+        alt="Essential Tee"
+        onclick="openLightbox(this.src)"
+      >
+
+      <div class="item-info">
+
+        <h3>Essential Tee</h3>
+
+        <p>Everyday staple</p>
+
+        <span class="fabric">
+          180 GSM
+        </span>
+
+        <span class="price">
+          399
+        </span>
+
+        <select class="size-select" aria-label="Select size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
+        <button
+          class="btn-buy"
+          onclick="addToCart(
+            this,
+            'Essential Tee',
+            399,
+            'IMG_20260818_072136.png'
+          )"
+        >
+          ADD
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- NOIR PRINT -->
+
+    <div class="item">
+
+      <img
+        src="IMG_20260818_072150.png"
+        alt="Noir Print Tee"
+        onclick="openLightbox(this.src)"
+      >
+
+      <div class="item-info">
+
+        <h3>Noir Print</h3>
+
+        <p>Bold monochrome statement</p>
+
+        <span class="fabric">
+          240 GSM
+        </span>
+
+        <span class="price">
+          699
+        </span>
+
+        <select class="size-select" aria-label="Select size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
+        <button
+          class="btn-buy"
+          onclick="addToCart(
+            this,
+            'Noir Print Tee',
+            699,
+            'IMG_20260818_072150.png'
+          )"
+        >
+          ADD
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- STUDIO TEE -->
+
+    <div class="item">
+
+      <img
+        src="IMG_20260818_072203.png"
+        alt="Studio Tee"
+        onclick="openLightbox(this.src)"
+      >
+
+      <div class="item-info">
+
+        <h3>Studio Tee</h3>
+
+        <p>Minimal modern design</p>
+
+        <span class="fabric">
+          200 GSM
+        </span>
+
+        <span class="price">
+          499
+        </span>
+
+        <select class="size-select" aria-label="Select size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
+        <button
+          class="btn-buy"
+          onclick="addToCart(
+            this,
+            'Studio Tee',
+            499,
+            'IMG_20260818_072203.png'
+          )"
+        >
+          ADD
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- LEGACY TEE -->
+
+    <div class="item">
+
+      <img
+        src="IMG_20260818_072227.png"
+        alt="Legacy Tee"
+        onclick="openLightbox(this.src)"
+      >
+
+      <div class="item-info">
+
+        <h3>Legacy Tee</h3>
+
+        <p>Timeless design</p>
+
+        <span class="fabric">
+          180 GSM
+        </span>
+
+        <span class="price">
+          399
+        </span>
+
+        <select class="size-select" aria-label="Select size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
+        <button
+          class="btn-
